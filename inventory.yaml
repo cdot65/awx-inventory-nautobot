@@ -1,0 +1,34 @@
+api_endpoint: http://hou-k3s-03:30080
+validate_certs: False
+config_context: True
+flatten_custom_fields: True
+
+group_by:
+  - device_roles
+  - device_types
+  - manufacturers
+  - platforms
+  - racks
+  - sites
+  - tags
+  - tenants
+group_names_raw: True
+
+interfaces: True
+
+device_query_filters:
+  - has_primary_ip: "True"
+
+query_filters:
+  - role: firewall
+  - role: hypervisor
+  - role: router
+  - role: switch
+# - tag: production
+
+plugin: networktocode.nautobot.inventory
+token: "my_secret_api_token_was_here"
+
+keyed_groups:
+  - prefix: status
+    key: status.value
